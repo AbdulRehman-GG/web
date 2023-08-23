@@ -57,18 +57,9 @@ app.use(function (req, res) {
     res.status(404).render('404');
 });
 
-const privateKey1 = fs.readFileSync('/etc/letsencrypt/live/www.desitechnologies.org/privkey.pem', 'utf8');
-const certificate1 = fs.readFileSync('/etc/letsencrypt/live/www.desitechnologies.org/cert.pem', 'utf8');
-const ca1 = fs.readFileSync('/etc/letsencrypt/live/www.desitechnologies.org/chain.pem', 'utf8');
-const options = {
-        key: privateKey1,
-        cert: certificate1,
-        ca: ca1
-};
 
 
-const server = https.createServer(options, app);
-server.listen(PORT,() => {
+const server = https.createServer(app);server.listen(PORT,() => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
